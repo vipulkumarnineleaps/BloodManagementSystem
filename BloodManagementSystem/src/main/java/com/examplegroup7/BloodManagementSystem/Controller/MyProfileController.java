@@ -12,9 +12,9 @@ import java.util.List;
 public class MyProfileController {
 
     @Autowired
-    public MyProfileService mypurchases;
+    public MyProfileService profile;
     @GetMapping("/profile")
-    public List<MyProfile> getProfielDetails(){
-        return myprofile.getProfileDetails();
+    public List<MyProfile> getProfileDetails(){
+        return profile.getProfileDetails();
     }
 }
