@@ -1,15 +1,16 @@
 package com.examplegroup7.BloodManagementSystem.services;
 
 import com.examplegroup7.BloodManagementSystem.entities.MyCommintmentDetails;
+import com.examplegroup7.BloodManagementSystem.repository.MyCommitmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MyCommitmentServiceImpl implements MyCommitmentService {
+public class MyCommitmentRepositoryImpl implements MyCommitmentRepository {
     List<MyCommintmentDetails> list;
-    public MyCommitmentServiceImpl()  //haven't used the database just used the list of details
+    public MyCommitmentRepositoryImpl()  //haven't used the database just used the list of details
     {
         list=new ArrayList<>();
         list.add(new MyCommintmentDetails("Drive", 1001L,"Gandhi Nagar"));//have to add start and end time and other details

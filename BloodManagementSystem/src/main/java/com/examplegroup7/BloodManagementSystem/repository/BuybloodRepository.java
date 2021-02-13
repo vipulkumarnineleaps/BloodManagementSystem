@@ -1,9 +1,9 @@
-package com.examplegroup7.BloodManagementSystem.services;
+package com.examplegroup7.BloodManagementSystem.repository;
 
 import com.examplegroup7.BloodManagementSystem.entities.Bloodbankdetails;
 
 import java.util.List;
 import com.examplegroup7.BloodManagementSystem.entities.Bloodbankdetails;
-public interface BuybloodService {
+public interface BuybloodRepository {
     public List<Bloodbankdetails> getbuyblood();
 }
