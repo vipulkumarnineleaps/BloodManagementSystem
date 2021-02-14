@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="contactus")
+@Table(name ="drives")
 @EntityListeners(AuditingEntityListener.class)
 
 public class UpcomingDrives {

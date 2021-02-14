@@ -1,26 +1,20 @@
 package com.examplegroup7.BloodManagementSystem.Controller;
 
 import com.examplegroup7.BloodManagementSystem.entities.CurrentPassword;
-import com.examplegroup7.BloodManagementSystem.services.CurrentPasswordServiceImpl;
+import com.examplegroup7.BloodManagementSystem.services.CurrentPasswordDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping(path="/password")
 public class CurrentPasswordController {
 
     @Autowired
-    public CurrentPasswordServiceImpl currentpassword;
+    public CurrentPasswordDAO currentPasswordDAO;
 
     @PostMapping("/currentPassword")
-    public String getMessage(@RequestBody CurrentPassword data){
-        return currentpassword.getMessage();
-    }
+    public CurrentPassword addmessage(@RequestBody CurrentPassword message) { return currentPasswordDAO.save(message);}
 
-//    @PutMapping("/changepassword/{id}")
-//    public String getMessage(@Requestbody ChangePassword data)
 }

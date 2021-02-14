@@ -1,22 +1,26 @@
 package com.examplegroup7.BloodManagementSystem.entities;
 
-public class CurrentPassword {
-    private int  id;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="currentpassword")
+@EntityListeners(AuditingEntityListener.class)
+
+public class CurrentPassword{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    private Long Id;
     private String cpassword;
 
-    public CurrentPassword(int id, String cpassword) {
-
-        this.id = id;
-        this.cpassword = cpassword;
-    }
-    public CurrentPassword() { super();}
-
-    public int getId() {
-        return id;
+    public Long getId() {
+        return Id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getCpassword() {
@@ -26,13 +30,4 @@ public class CurrentPassword {
     public void setCpassword(String cpassword) {
         this.cpassword = cpassword;
     }
-
-    @Override
-    public String toString() {
-        return "CurrentPassword{" +
-                "id=" + id +
-                ", cpassword='" + cpassword + '\'' +
-                '}';
-    }
 }
-
