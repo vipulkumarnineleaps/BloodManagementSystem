@@ -1,7 +1,7 @@
 package com.examplegroup7.BloodManagementSystem.Controller;
 
-import com.examplegroup7.BloodManagementSystem.entities.MyCommintmentDetails;
-import com.examplegroup7.BloodManagementSystem.repository.MyCommitmentRepository;
+
+import com.examplegroup7.BloodManagementSystem.services.CommitmentsDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,13 +12,13 @@ import java.util.List;
 public class MyCommitmentsController {
 
     @Autowired
-    public MyCommitmentRepository myCommitmentRepository;
+    CommitmentsDAO commitmentsDAO;
 
     @GetMapping("/commitment")
-    public List<MyCommintmentDetails> getcommitdetails()
+    public List<?> getcommitmentdetails()
     {
-        return this.myCommitmentRepository.getcommitdetails();
+        String id = "1";
+        return commitmentsDAO.getDetails(id);
     }
-
 
 }
