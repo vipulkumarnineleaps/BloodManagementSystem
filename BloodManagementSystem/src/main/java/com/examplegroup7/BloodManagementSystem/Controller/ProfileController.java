@@ -1,16 +1,13 @@
 package com.examplegroup7.BloodManagementSystem.Controller;
 
-import com.examplegroup7.BloodManagementSystem.entities.Profile;
-import com.examplegroup7.BloodManagementSystem.entities.ProfileData;
+import com.examplegroup7.BloodManagementSystem.entities.SuccessResponseBody;
+import com.examplegroup7.BloodManagementSystem.services.ChangePasswordDAO;
+import com.examplegroup7.BloodManagementSystem.services.VerifyCurrentPasswordDAO;
 import com.examplegroup7.BloodManagementSystem.services.ProfileDAO;
-import com.examplegroup7.BloodManagementSystem.services.ProfileDataDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path= "/profile")
@@ -20,16 +17,66 @@ public class ProfileController {
     ProfileDAO profileDAO;
 
     @GetMapping("/userprofile")
-    public List<Profile> getProfileDetails(){
-        return profileDAO.getProfileDetails();
+    public Object getProfileDetails(@RequestParam String id){
+
+        String userType = "1";
+
+        if(userType == "1"){
+            return profileDAO.getProfileDetailsInd(id);
+        }else if(userType == "2"){
+            return profileDAO.getProfileDetailsBb(id);
+        }else{
+            return profileDAO.getProfileDetailsHos(id);
+        }
+    }
+
+    @GetMapping("/fetchprofiledata")
+    public Object getProfileDataDetails(@RequestParam String id){
+//Change userId to UserType
+        String userType = "1";
+
+        if(userType == "1"){
+            return profileDAO.getProfileIndDetails(id);
+        }else if(userType == "2"){
+            return profileDAO.getProfileBbDetails(id);
+        }else{
+            return profileDAO.getProfileHosDetails(id);
+        }
     }
 
     @Autowired
-    ProfileDataDAO profileDataDAO;
+    VerifyCurrentPasswordDAO verifycurrentPasswordDAO;
 
-    @GetMapping("/fetchprofiledata")
-    public List<ProfileData> getProfileDataDetails(){
-        return profileDataDAO.getProfileDataDetails();
+    @PostMapping("/verifycurrentPassword")
+    public ResponseEntity<SuccessResponseBody> verifyPass(@RequestBody String message) {
+
+        String userId ="Aa";
+        String userType = "1";
+
+        if(userType == "1"){
+            return verifycurrentPasswordDAO.saveInd(message, userId);
+        }else if(userType == "2"){
+            return verifycurrentPasswordDAO.saveBb(message, userId);
+        }else{
+            return verifycurrentPasswordDAO.saveHos(message, userId);
+        }
     }
 
+    @Autowired
+    ChangePasswordDAO changePasswordDAO;
+
+    @PutMapping("/changePassword")
+    public ResponseEntity<SuccessResponseBody> changePass(@RequestBody String message) {
+
+        String userId ="Aa";
+        String userType = "1";
+
+        if(userType == "1"){
+            return changePasswordDAO.saveInd(message, userId);
+        }else if(userType == "2"){
+            return changePasswordDAO.saveBb(message, userId);
+        }else{
+            return changePasswordDAO.saveHos(message, userId);
+        }
+    }
 }
